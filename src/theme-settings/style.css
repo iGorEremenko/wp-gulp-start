@@ -1,0 +1,20 @@
+/*
+Theme Name:
+Theme URI:
+Author:
+Author URI:
+Description:
+Version: 1.0
+Tags:
+Text Domain:
+*/
+
+/* blocks the inscription zzz.com.ua */
+
+
+#dd-popup {
+    display:none!important;
+}
+.cbalink {
+    display: none!important;
+}

@@ -2,46 +2,47 @@
  * Wordpress gulp theme build
  * ********************************************************
  *
- * Gulp by Eremenko Igor 11.62019 @MerelyiGor
- * Обьявление переменных
- * пути к файлам
- * путь к родителю директорий
+ * Gulp WP example theme by Eremenko Igor 17.6.2019 @MerelyiGor
+ * Variable declaration
+ * file paths for settings below
+ * path to the parent directories of the finished theme and the folder with the source files,
+ * customize according to your project
  *
  * ********************************************************
  * ********************************************************/
-const root_dir_theme_name = 'misskiss-theme';                                                               // Название папки темы
-const root_dir = 'root_dir/';                                                                               // папка корня с готовым проектом
-const root_src_APP = 'src/';                                                                                // папка с исходними файлами темы
-const root_src_sass = root_src_APP + 'sass/**/*.sass';                                                      // путь ко всем sass файлам
-const root_src_php = root_src_APP + 'theme-patch-php/**/**/*.php';                                          // путь ко всем php файлам страниц
-const root_src_js = root_src_APP + 'js/**/*.js';                                                            // путь ко всем js файлам
-const root_src_libs = root_src_APP + 'libs/**/*';                                                           // путь ко всем файлам библиотек
-const root_src_image = root_src_APP + 'image/**/*';                                                         // путь ко всем изображениям
-const root_src_screenshot = root_src_APP + 'screenshot/*';                                                  // путь к изходнику мениатюры темы
-const root_src_inc = root_src_APP + 'inc/**/*';                                                             // путь к изходнику php библиотек темы
-const root_src_settings_style = root_src_APP + 'theme-settings/style.css';                                  // путь к изходнику настроек темы
+const root_dir_theme_name = 'misskiss-theme';                                                               // Theme folder name
+const root_dir = 'root_dir/';                                                                               // root folder with the finished project
+const root_src_APP = 'src/';                                                                                // theme source folder
+const root_src_sass = root_src_APP + 'sass/**/*.sass';                                                      // path to all sass files
+const root_src_php = root_src_APP + 'theme-patch-php/**/**/*.php';                                          // path to all php files of pages
+const root_src_js = root_src_APP + 'js/**/*.js';                                                            // path to all js files
+const root_src_libs = root_src_APP + 'libs/**/*';                                                           // path to all library files
+const root_src_image = root_src_APP + 'image/**/*';                                                         // path to all images
+const root_src_screenshot = root_src_APP + 'screenshot/*';                                                  // Path to the subject meniature
+const root_src_inc = root_src_APP + 'inc/**/*';                                                             // path to php theme library
+const root_src_settings_style = root_src_APP + 'theme-settings/style.css';                                  // path to theme settings
 
-const build_dir_css = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/css';                       // путь в папку готового css
-const build_dir_php = root_dir + 'wp-content/themes/' + root_dir_theme_name;                                // путь в папку готовых php
-const build_dir_js = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/js';                         // путь в папку готовых js
-const build_dir_libs = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/libs';                     // путь в папку библиотек
-const build_dir_image = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/image';                   // путь в папку готовых изображений
-const build_dir_screenshot = root_dir + 'wp-content/themes/' + root_dir_theme_name;                         // путь в папку с миниатюрой темы
-const build_dir_inc = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/inc';                       // путь php библиотек темы
-const build_dir_settings_style = root_dir + 'wp-content/themes/' + root_dir_theme_name;                     // путь в папку корня темы для настроек
+const build_dir_css = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/css';                       // path to the folder ready css
+const build_dir_php = root_dir + 'wp-content/themes/' + root_dir_theme_name;                                // path to the folder ready php
+const build_dir_js = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/js';                         // ready js folder path
+const build_dir_libs = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/libs';                     // path to the library folder
+const build_dir_image = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/image';                   // path to the folder of finished images
+const build_dir_screenshot = root_dir + 'wp-content/themes/' + root_dir_theme_name;                         // path to the folder with the theme thumbnail
+const build_dir_inc = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/inc';                       // php theme library path
+const build_dir_settings_style = root_dir + 'wp-content/themes/' + root_dir_theme_name;                     // path to the theme folder for settings
 
 /***************----------------------------------------------------------------**************
- * Настройки выгрузки на сервер
+ * Settings upload to server
  * FTP UPLOAD COMAND "$ gulp deploy"
  ***************----------------------------------------------------------------**************/
 const ftp_host = 'host';
 const ftp_user = 'user';
 const ftp_password = 'password';
-const local_directory_src = root_dir + 'wp-content/themes/' + root_dir_theme_name;                          //путь от куда брать файлы для выгрузки
-const FTP_directory_deploy = root_dir + '/sub/domain.com/to/server/directory';                              //путь куда загружать папки на сервере
+const local_directory_src = root_dir + 'wp-content/themes/' + root_dir_theme_name;                          // path from where to get files to upload
+const FTP_directory_deploy = root_dir + '/sub/domain.com/to/server/directory';                              // path to upload folders on the server
 /***************----------------------------------------------------------------**************/
 
-// Подключаем Gulp и все необходимые библиотеки
+// We connect Gulp and all necessary libraries
 const gulp = require('gulp'),
     gutil = require('gulp-util'),
     sass = require('gulp-sass'),
@@ -52,7 +53,7 @@ const gulp = require('gulp'),
     del = require('del');
 
 
-// Компиляция main.css
+// scissors and paste main.css
 gulp.task('sass', function () {
     return gulp.src(root_src_sass)
         .pipe(sass({
@@ -63,55 +64,55 @@ gulp.task('sass', function () {
         .pipe(gulp.dest(build_dir_css));
 });
 
-// удаление файлов по требованию - (кеш и тд)
+// delete files on demand - (cash and so on)
 gulp.task('clean', function () {
     return del(['root_dir/system/storage/cache/*', '!root_dir/system/storage/cache']);
 });
 
-// Сборка php
+// assembly php
 gulp.task('php:build', function () {
     gulp.src(root_src_php)
         .pipe(gulp.dest(build_dir_php))
 });
 
-// Сборка js
+// assembly js
 gulp.task('js:build', function () {
     gulp.src(root_src_js)
         .pipe(gulp.dest(build_dir_js))
 });
 
-// перемещение библиотек
+// library relocation
 gulp.task('libs:build', function () {
     gulp.src(root_src_libs)
         .pipe(gulp.dest(build_dir_libs))
 });
 
-// перемещение изображений
+// moving images
 gulp.task('image:build', function () {
     gulp.src(root_src_image)
         .pipe(gulp.dest(build_dir_image))
 });
 
-// перемещение скриншота темы
+// moving theme screenshot
 gulp.task('screen:build', function () {
     gulp.src(root_src_screenshot)
         .pipe(gulp.dest(build_dir_screenshot))
 });
 
-// перемещение php библиотек темы
+// moving php theme libraries
 gulp.task('php-libs:build', function () {
     gulp.src(root_src_inc)
         .pipe(gulp.dest(build_dir_inc))
 });
 
 
-// перемещение файла настроек темы style.css
+// moving theme settings file style.css
 gulp.task('settings:build', function () {
     gulp.src(root_src_settings_style)
         .pipe(gulp.dest(build_dir_settings_style))
 });
 
-// Наблюдение за файлами
+// File monitoring
 gulp.task('watch', ['sass'], function () {
     gulp.watch(root_src_sass, ['sass']);
     gulp.watch(root_src_php, ['php:build']);
@@ -123,7 +124,7 @@ gulp.task('watch', ['sass'], function () {
     gulp.watch(root_src_settings_style, ['settings:build']);
 });
 
-// Выгрузка изменений на хостинг
+// Uploading changes to hosting
 gulp.task('deploy', function () {
     const conn = ftp.create({
         host: ftp_host,

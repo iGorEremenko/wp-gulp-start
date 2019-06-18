@@ -39,7 +39,7 @@ const ftp_host = 'host';
 const ftp_user = 'user';
 const ftp_password = 'password';
 const local_directory_src = root_dir + 'wp-content/themes/' + root_dir_theme_name;                          // path from where to get files to upload
-const FTP_directory_deploy = root_dir + '/sub/domain.com/to/server/directory';                              // path to upload folders on the server
+const FTP_directory_deploy = '/sub/domain.com/to/server/directory';                              // path to upload folders on the server
 /***************----------------------------------------------------------------**************/
 
 // We connect Gulp and all necessary libraries

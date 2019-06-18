@@ -1,4 +1,4 @@
-# gulp-start-new-project-example
+# gulp-wordpress-start-example
 Start your new project wordpress it clone this template 
 for layout on gulp,sass etc auto deploy FTP and more settings.
 

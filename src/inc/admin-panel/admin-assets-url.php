@@ -20,3 +20,15 @@ function admin_assets_url($var_admin_assets = 'secret')
         }
     }
 }
+
+
+
+## put this function in a file wp-login.php at the root of WordPress for the correct function of the above function
+/*************
+
+function is_log_page()
+{
+return true;
+}
+
+*************/

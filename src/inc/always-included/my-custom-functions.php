@@ -11,6 +11,23 @@ function dd($var_dump, $die = false)
     }
 }
 
+## go to custom admin panel link
+function admin_url_custom($mysecretkey = 'superadmin')
+{
+    if (isset($_GET['admin'])) {
+        $seckey = $_GET['admin'];
+        setcookie("secretkey", $_GET['admin']);
+    } else if (isset($_COOKIE['secretkey'])) {
+        $seckey = $_COOKIE['secretkey'];
+    } else {
+        $seckey = '';
+    }
+    if ($seckey != $mysecretkey) {
+        header("HTTP/1.0 404 Not Found");
+        exit;
+    }
+}
+
 ## get valid current page link
 function current_url()
 {

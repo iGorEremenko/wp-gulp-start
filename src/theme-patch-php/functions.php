@@ -33,7 +33,7 @@ include_once 'inc/custom-wp-function/custom-breadcrumb.php';
 include_once 'inc/custom-wp-function/custom-short-cod.php';
 include_once 'inc/custom-wp-function/custom-search-results.php';
 include_once 'inc/custom-wp-function/custom-registration-form-TO-DOO.php';
-include_once 'inc/custom-wp-function/filter-wp-content.php;
+include_once 'inc/custom-wp-function/filter-wp-content.php';
 
 ## other function
 include_once 'inc/other-function/wp-admin-ccs.php';

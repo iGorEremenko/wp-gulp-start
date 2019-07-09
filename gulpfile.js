@@ -10,7 +10,7 @@
  *
  * ********************************************************
  * ********************************************************/
-const root_dir_theme_name = 'misskiss-theme';                                                               // Theme folder name !!!
+const root_dir_theme_name = 'myThemeName';                                                               // Theme folder name !!!
 /**********************************************************
  * const root_dir_theme_name = your theme NAME!!!!
  * ********************************************************/
@@ -141,16 +141,17 @@ gulp.task('deploy', function () {
         .pipe(conn.dest(FTP_directory_deploy));
 });
 
-gulp.task('build', [
-    // 'clean',
-    'sass',
-    'php:build',
-    'js:build',
-    'libs:build',
-    'image:build',
-    'screen:build',
-    'php-libs:build',
-    'settings:build'
-]);
+gulp.task('build', ['clean'], function () {
+    gulp.start([
+        'sass',
+        'php:build',
+        'js:build',
+        'libs:build',
+        'image:build',
+        'screen:build',
+        'php-libs:build',
+        'settings:build'
+    ]);
+});
 
 gulp.task('default', ['watch']);

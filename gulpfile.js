@@ -141,7 +141,9 @@ gulp.task('deploy', function () {
         .pipe(conn.dest(FTP_directory_deploy));
 });
 
-gulp.task('build', ['sass',
+gulp.task('build', [
+    // 'clean',
+    'sass',
     'php:build',
     'js:build',
     'libs:build',

@@ -10,8 +10,11 @@
  *
  * ********************************************************
  * ********************************************************/
-const root_dir_theme_name = 'misskiss-theme';                                                               // Theme folder name
-const root_dir = 'root_dir/';                                                                               // root folder with the finished project
+const root_dir_theme_name = 'misskiss-theme';                                                               // Theme folder name !!!
+/**********************************************************
+ * const root_dir_theme_name = your theme NAME!!!!
+ * ********************************************************/
+const root_dir = 'public/';                                                                                 // root folder with the finished project
 const root_src_APP = 'src/';                                                                                // theme source folder
 const root_src_sass = root_src_APP + 'sass/**/*.sass';                                                      // path to all sass files
 const root_src_php = root_src_APP + 'theme-patch-php/**/**/*.php';                                          // path to all php files of pages
@@ -38,7 +41,7 @@ const build_dir_settings_style = root_dir + 'wp-content/themes/' + root_dir_them
 const ftp_host = 'host';
 const ftp_user = 'user';
 const ftp_password = 'password';
-const local_directory_src = root_dir + 'wp-content/themes/' + root_dir_theme_name;                          // path from where to get files to upload
+const local_directory_src = root_dir + 'wp-content/themes/' + root_dir_theme_name + '/**';       // path from where to get files to upload
 const FTP_directory_deploy = '/sub/domain.com/to/server/directory';                              // path to upload folders on the server
 /***************----------------------------------------------------------------**************/
 
@@ -66,7 +69,7 @@ gulp.task('sass', function () {
 
 // delete files on demand - (cash and so on)
 gulp.task('clean', function () {
-    return del(['root_dir/system/storage/cache/*', '!root_dir/system/storage/cache']);
+    return del([root_dir + 'wp-content/themes/' + root_dir_theme_name + '/**', '!' + root_dir + '/wp-content/themes/' + root_dir_theme_name]);
 });
 
 // assembly php

@@ -2,6 +2,7 @@
 
 /**
  * ACF Options Page
+ * get_field('field-selector','option'); get object fields
  *
  */
 

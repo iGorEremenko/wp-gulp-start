@@ -9,6 +9,13 @@
     <div class="items">
 
         <div class="share-item share-item_vk">
+            <a title="Поделиться в Telegram" href="https://telegram.me/share/url?url=<?php
+            the_permalink(); ?>" target="_blank" rel="nofollow">
+                <div class="share-item__icon"></div>
+            </a>
+        </div>
+
+        <div class="share-item share-item_vk">
             <a title="Поделиться ВКонтакте" href="http://vk.com/share.php?url=<?php
             the_permalink(); ?>" target="_blank" rel="nofollow">
                 <div class="share-item__icon"></div>

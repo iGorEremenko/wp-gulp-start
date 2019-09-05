@@ -3,7 +3,16 @@
 ## new var_dump function
 function dd($var_dump, $die = false)
 {
-    echo '<pre style="color: #850085">';
+    echo '<style>
+pre {
+    color: #850085
+}
+pre::selection {
+    color: #ff0; /* Цвет текста */
+    background: #000; /* Цвет фона */
+}
+  </style>';
+    echo '<pre>';
     var_dump($var_dump);
     echo '</pre>';
     if ($die) {

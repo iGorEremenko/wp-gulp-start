@@ -57,7 +57,7 @@ const gulp = require('gulp'),
 
 
 // scissors and paste main.css
-gulp.task('sass', function () {
+function sassBuild(done) {
     return gulp.src(root_src_sass)
         .pipe(sass({
             includePaths: bourbon.includePaths
@@ -65,67 +65,76 @@ gulp.task('sass', function () {
         .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {cascade: true}))
         .pipe(cleanCSS())
         .pipe(gulp.dest(build_dir_css));
-});
+    done();
+}
 
 // delete files on demand - (cash and so on)
-gulp.task('clean', function () {
+function clean(done) {
     return del([root_dir + 'wp-content/themes/' + root_dir_theme_name + '/**', '!' + root_dir + '/wp-content/themes/' + root_dir_theme_name]);
-});
+    done();
+}
 
 // assembly php
-gulp.task('php:build', function () {
+function phpBuild(done) {
     gulp.src(root_src_php)
-        .pipe(gulp.dest(build_dir_php))
-});
+        .pipe(gulp.dest(build_dir_php));
+    done();
+}
 
 // assembly js
-gulp.task('js:build', function () {
+function jsBuild(done) {
     gulp.src(root_src_js)
-        .pipe(gulp.dest(build_dir_js))
-});
+        .pipe(gulp.dest(build_dir_js));
+    done();
+}
 
 // library relocation
-gulp.task('libs:build', function () {
+function libsBuild(done) {
     gulp.src(root_src_libs)
-        .pipe(gulp.dest(build_dir_libs))
-});
+        .pipe(gulp.dest(build_dir_libs));
+    done();
+}
 
 // moving images
-gulp.task('image:build', function () {
+function imageBuild(done) {
     gulp.src(root_src_image)
-        .pipe(gulp.dest(build_dir_image))
-});
+        .pipe(gulp.dest(build_dir_image));
+    done();
+}
 
 // moving theme screenshot
-gulp.task('screen:build', function () {
+function screenBuild(done) {
     gulp.src(root_src_screenshot)
-        .pipe(gulp.dest(build_dir_screenshot))
-});
+        .pipe(gulp.dest(build_dir_screenshot));
+    done();
+}
 
 // moving php theme libraries
-gulp.task('php-libs:build', function () {
+function phpLibsBuild(done) {
     gulp.src(root_src_inc)
-        .pipe(gulp.dest(build_dir_inc))
-});
+        .pipe(gulp.dest(build_dir_inc));
+    done();
+}
 
 
 // moving theme settings file style.css
-gulp.task('settings:build', function () {
+function settingsBuild(done) {
     gulp.src(root_src_settings_style)
-        .pipe(gulp.dest(build_dir_settings_style))
-});
+        .pipe(gulp.dest(build_dir_settings_style));
+    done();
+}
 
-// File monitoring
-gulp.task('watch', ['sass'], function () {
-    gulp.watch(root_src_sass, ['sass']);
-    gulp.watch(root_src_php, ['php:build']);
-    gulp.watch(root_src_js, ['js:build']);
-    gulp.watch(root_src_libs, ['libs:build']);
-    gulp.watch(root_src_image, ['image:build']);
-    gulp.watch(root_src_screenshot, ['screen:build']);
-    gulp.watch(root_src_inc, ['php-libs:build']);
-    gulp.watch(root_src_settings_style, ['settings:build']);
-});
+
+function watchFiles() {
+    gulp.watch(root_src_sass, gulp.series(sassBuild));
+    gulp.watch(root_src_php, gulp.series(phpBuild));
+    gulp.watch(root_src_js, gulp.series(jsBuild));
+    gulp.watch(root_src_libs, gulp.series(libsBuild));
+    gulp.watch(root_src_image, gulp.series(imageBuild));
+    gulp.watch(root_src_screenshot, gulp.series(screenBuild));
+    gulp.watch(root_src_inc, gulp.series(phpLibsBuild));
+    gulp.watch(root_src_settings_style, gulp.series(settingsBuild));
+}
 
 // Uploading changes to hosting
 gulp.task('deploy', function () {
@@ -141,17 +150,15 @@ gulp.task('deploy', function () {
         .pipe(conn.dest(FTP_directory_deploy));
 });
 
-gulp.task('build', ['clean'], function () {
-    gulp.start([
-        'sass',
-        'php:build',
-        'js:build',
-        'libs:build',
-        'image:build',
-        'screen:build',
-        'php-libs:build',
-        'settings:build'
-    ]);
-});
+gulp.task('build', gulp.series(clean, gulp.parallel(
+    sassBuild,
+    phpBuild,
+    jsBuild,
+    libsBuild,
+    imageBuild,
+    screenBuild,
+    phpLibsBuild,
+    settingsBuild
+)));
 
-gulp.task('default', ['watch']);
+gulp.task('default', gulp.series(watchFiles));

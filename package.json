@@ -1,21 +1,63 @@
 {
   "name": "Wordpress-Gulp-Start",
+  "author": {
+    "name": "Merelyigor",
+    "email": "mogila1708@gmail.com",
+    "url": "https://github.com/iGorEremenko"
+  },
+  "contributors": [
+    {
+      "name": "Merelyigor",
+      "email": "mogila1708@gmail.com",
+      "url": "https://github.com/iGorEremenko"
+    }
+  ],
+  "homepage": "https://blog.eremenko.top",
   "version": "1.0.0",
+  "license": "ISC",
+  "keywords": [
+    "wp",
+    "project",
+    "blog"
+  ],
   "lockfileVersion": 1,
   "description": "wp Gulp Project",
   "main": "gulpfile.js",
-  "author": "Merelyigor",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iGorEremenko/wp-gulp-start/blob/master/README.md"
+  },
+  "private": true,
   "devDependencies": {
-    "browser-sync": "^2.17.3",
+    "browser-sync": "^2.26.7",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^3.1.1",
-    "gulp-clean-css": "^2.0.13",
-    "gulp-sass": "3.0.0",
-    "gulp-util": "^3.0.7",
+    "gulp-clean-css": "^2.4.0",
+    "gulp-sass": "^3.2.1",
+    "gulp-util": "^3.0.8",
     "node-bourbon": "^4.2.8",
-    "vinyl-ftp": "^0.5.0",
-    "del": "^4.1.1"
+    "vinyl-ftp": "^0.6.1",
+    "del": "^5.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.4.0",
+    "gulp-sass": "^3.2.1",
+    "gulp-util": "^3.0.8",
+    "node-bourbon": "^4.2.8",
+    "vinyl-ftp": "^0.6.1",
+    "del": "^5.1.0"
+  },
+  "engines": {
+    "node": "^12.10.0",
+    "npm": "^6.11.3",
+    "yarn": "^1.17.3"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

@@ -120,3 +120,9 @@ function generateRandomString($length = 10)
 {
     return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyz', ceil($length / strlen($x)))), 1, $length);
 }
+
+//convert String To Utf8
+function convertToUtf8($str)
+{
+    return iconv(mb_detect_encoding($str, mb_detect_order(), true), "UTF-8", $str);
+}

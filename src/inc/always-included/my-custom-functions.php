@@ -114,3 +114,9 @@ function PBP_increase_upload($bytes)
 {
     return 90048576; // 1 megabyte
 }
+
+//generating a random string with a long (argument is long)
+function generateRandomString($length = 10)
+{
+    return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyz', ceil($length / strlen($x)))), 1, $length);
+}

@@ -146,7 +146,7 @@ gulp.task('deploy', function () {
         log: gutil.log
     });
     const globs = [local_directory_src];
-    return gulp.src(globs, {base: '.', buffer: false})
+    return gulp.src(globs, {buffer: false})
         .pipe(conn.newer(FTP_directory_deploy))
         .pipe(conn.dest(FTP_directory_deploy));
 });

@@ -26,6 +26,7 @@
 <?php
 /*
 Template Name: page_template name
+Template Post Type: post, page, product
 */
 ?>
 

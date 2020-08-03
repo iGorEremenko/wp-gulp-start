@@ -8,7 +8,7 @@ function ajax_url_var_add()
     // I connect js variable with URL to admin ajax requestor
     wp_localize_script('api-ajax', 'ajaxurl',
         [
-            'url' => site_url() . 'wp-admin/admin-ajax.php'
+            'url' => site_url() . '/wp-admin/admin-ajax.php'
         ]
     );
 }
